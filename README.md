@@ -2,7 +2,7 @@
 
 A clone of the popular New York Times game "Wordle" made using Django, Python, HTML, CSS, and JavaScript.
 
-A demo website is deploed on Render which can be viewed [here]
+A demo website is deploed on Render which can be viewed [here](https://wordleclone-8liw.onrender.com/)
 
 *Please note:* I am using the free version of Render so it may take a few minutes to open the website, sorry for the inconvenience.
 
