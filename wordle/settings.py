@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'base.User'
 
+CSRF_TRUSTED_ORIGINS = ['https://wordleclone-8liw.onrender.com']
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
