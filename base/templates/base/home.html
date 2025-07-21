@@ -1,0 +1,160 @@
+{% extends 'main.html' %}
+
+{% load static %}
+{% load index_filters %}
+{% block content %}
+
+<header>
+    <br>
+    <h1>Hello, {{user.username}}</h1>
+    <div class="links">
+        <a href="{% url 'leaderboard' %}"><img class="img__small" src="{% static 'images/ranking.png' %}" alt=""></a>
+        <a href="{% url 'logout' %}"><img class="img__small" src="{% static 'images/logout.png' %}" alt=""></a>
+    </div>
+
+</header>
+
+<div>
+    <div class="{% if valid_guess == False %}show__message
+                {% else %}hide__message{% endif %}">
+        Not in word list
+    </div>
+    <div class="game">
+        <ul class="{% if attempt == 0 %}active{% endif %}">
+            {% for i in range_5 %}
+                <li class="{{result1|index:i}}">{{guess1|index:i}}</li>
+            {% endfor %}
+        </ul>
+        <ul class="{% if attempt == 1 %}active{% endif %}">
+            {% for i in range_5 %}
+                <li class="{{result2|index:i}}">{{guess2|index:i}}</li>
+            {% endfor %}
+        </ul>
+        <ul class="{% if attempt == 2 %}active{% endif %}">
+            {% for i in range_5 %}
+                <li class="{{result3|index:i}}">{{guess3|index:i}}</li>
+            {% endfor %}
+        </ul>
+        <ul class="{% if attempt == 3 %}active{% endif %}">
+            {% for i in range_5 %}
+                <li class="{{result4|index:i}}">{{guess4|index:i}}</li>
+            {% endfor %}
+        </ul>
+        <ul class="{% if attempt == 4 %}active{% endif %}">
+            {% for i in range_5 %}
+                <li class="{{result5|index:i}}">{{guess5|index:i}}</li>
+            {% endfor %}
+        </ul>
+        <ul class="{% if attempt == 5 %}active{% endif %}">
+            {% for i in range_5 %}
+                <li class="{{result6|index:i}}">{{guess6|index:i}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div id="keyboard">
+        <div class="row">
+            <button class="keyboard__key {% if 'Q' in answer.word and 'Q' in user.guessed_letters %}key__present{% elif 'Q' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('Q')">Q</button>
+            <button class="keyboard__key {% if 'W' in answer.word and 'W' in user.guessed_letters %}key__present{% elif 'W' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('W')">W</button>
+            <button class="keyboard__key {% if 'E' in answer.word and 'E' in user.guessed_letters %}key__present{% elif 'E' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('E')">E</button>
+            <button class="keyboard__key {% if 'R' in answer.word and 'R' in user.guessed_letters %}key__present{% elif 'R' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('R')">R</button>
+            <button class="keyboard__key {% if 'T' in answer.word and 'T' in user.guessed_letters %}key__present{% elif 'T' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('T')">T</button>
+            <button class="keyboard__key {% if 'Y' in answer.word and 'Y' in user.guessed_letters %}key__present{% elif 'Y' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('Y')">Y</button>
+            <button class="keyboard__key {% if 'U' in answer.word and 'U' in user.guessed_letters %}key__present{% elif 'U' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('U')">U</button>
+            <button class="keyboard__key {% if 'I' in answer.word and 'I' in user.guessed_letters %}key__present{% elif 'I' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('I')">I</button>
+            <button class="keyboard__key {% if 'O' in answer.word and 'O' in user.guessed_letters %}key__present{% elif 'O' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('O')">O</button>
+            <button class="keyboard__key {% if 'P' in answer.word and 'P' in user.guessed_letters %}key__present{% elif 'P' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('P')">P</button>
+        </div>
+        <div class="row">
+            <button class="keyboard__key {% if 'A' in answer.word and 'A' in user.guessed_letters %}key__present{% elif 'A' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('A')">A</button>
+            <button class="keyboard__key {% if 'S' in answer.word and 'S' in user.guessed_letters %}key__present{% elif 'S' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('S')">S</button>
+            <button class="keyboard__key {% if 'D' in answer.word and 'D' in user.guessed_letters %}key__present{% elif 'D' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('D')">D</button>
+            <button class="keyboard__key {% if 'F' in answer.word and 'F' in user.guessed_letters %}key__present{% elif 'F' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('F')">F</button>
+            <button class="keyboard__key {% if 'G' in answer.word and 'G' in user.guessed_letters %}key__present{% elif 'G' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('G')">G</button>
+            <button class="keyboard__key {% if 'H' in answer.word and 'H' in user.guessed_letters %}key__present{% elif 'H' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('H')">H</button>
+            <button class="keyboard__key {% if 'J' in answer.word and 'J' in user.guessed_letters %}key__present{% elif 'J' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('J')">J</button>
+            <button class="keyboard__key {% if 'K' in answer.word and 'K' in user.guessed_letters %}key__present{% elif 'K' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('K')">K</button>
+            <button class="keyboard__key {% if 'L' in answer.word and 'L' in user.guessed_letters %}key__present{% elif 'L' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('L')">L</button>
+            <button id="enter" onclick="keyboardInput('Enter')">Enter</button>
+
+        </div>
+        <div class="row">
+            <button class="keyboard__key {% if 'Z' in answer.word and 'Z' in user.guessed_letters %}key__present{% elif 'Z' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('Z')">Z</button>
+            <button class="keyboard__key {% if 'X' in answer.word and 'X' in user.guessed_letters %}key__present{% elif 'X' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('X')">X</button>
+            <button class="keyboard__key {% if 'C' in answer.word and 'C' in user.guessed_letters %}key__present{% elif 'C' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('C')">C</button>
+            <button class="keyboard__key {% if 'V' in answer.word and 'V' in user.guessed_letters %}key__present{% elif 'V' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('V')">V</button>
+            <button class="keyboard__key {% if 'B' in answer.word and 'B' in user.guessed_letters %}key__present{% elif 'B' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('B')">B</button>
+            <button class="keyboard__key {% if 'N' in answer.word and 'N' in user.guessed_letters %}key__present{% elif 'N' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('N')">N</button>
+            <button class="keyboard__key {% if 'M' in answer.word and 'M' in user.guessed_letters %}key__present{% elif 'M' in user.guessed_letters %}key__guessed{% endif %}" onclick="keyboardInput('M')">M</button>
+            <button id="backspace" onclick="keyboardInput('Backspace')">Backspace</button>
+        </div>
+    </div>
+    <form method="POST" action=""/>
+        {% csrf_token %}
+        <input type="text" name="word" maxlength="5" id="guess__box" value=""/>
+    </form>
+    {% if attempt == 6 %}
+        <h3>Answer: {{answer.word}}</h3>
+    {% endif %}
+    <a class="action__btn" href="{% url 'new-game' %}">New Game</a>
+</div>
+
+
+<script type="text/javascript">
+    let currentGuess = "";
+    const activeRow = document.querySelector(".active");
+    const letters = activeRow.querySelectorAll("li");
+    var buttons = document.getElementsByTagName(buttons);
+
+    function keyboardInput(key){
+        const event = new KeyboardEvent('keydown', {
+            key: key,
+        })
+        document.dispatchEvent(event);
+    }
+
+    document.addEventListener("keydown", function (event) {
+        const key = event.key;
+
+        if(/^[a-zA-Z]$/.test(key) && currentGuess.length < 5){
+            currentGuess += key.toUpperCase();
+            updateDisplay();
+        }
+
+        if(key == "Backspace" && currentGuess.length > 0){
+            currentGuess = currentGuess.slice(0, -1);
+            updateDisplay();
+        }
+
+        if(key === "Enter"){
+            if(currentGuess.length === 5){
+                submitGuess(currentGuess);
+                updateDisplay();
+            }
+        }
+    });
+
+    function updateDisplay(){
+        for(let i = 0; i < 5; i++){
+            letters[i].textContent = currentGuess[i];
+            if(letters[i].textContent){
+                console.log(letters[i].textContent + " Has letter")
+                letters[i].classList.add('has__input') 
+            }
+            else{
+                console.log("No letter")
+                letters[i].classList.remove('has__input')
+            }
+        }
+    };
+
+    function submitGuess(guess){
+        document.getElementById("guess__box").value = guess;
+        document.querySelector('form').submit();
+    };
+</script>
+{% endblock content %}
+
+
+
+

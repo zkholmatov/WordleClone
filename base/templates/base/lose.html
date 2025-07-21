@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="win">
+    <h1>You lost</h1>
+
+    <h2>The word was {{answer.word}}</h2>
+
+    <a class="action__btn" href="{% url 'home' %}">Okay</a>
+</div>
+
+{% endblock content %}

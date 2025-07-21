@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="registration__page">
+    <form method="POST" action="">
+        {% csrf_token %}
+        {% for field in form %}
+            <label for="">{{field.label}}</label>
+            {{field}}
+        {% endfor %}
+
+        <input class="action__btn" type="submit" value="register">
+    </form>
+
+    <p>Already have an account?</p>
+    <a class="text__link" href="{% url 'login' %}">Login</a>
+</div>
+
+{% endblock content %}

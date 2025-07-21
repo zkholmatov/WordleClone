@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="win">
+    <h1>Congratulations!</h1>
+    <h3>
+        You got it in 
+        <span class="
+            {% if guess.attempt_number <= 2 %}score__perfect
+            {% elif guess.attempt_number <= 4 %}score__good
+            {% elif guess.attempt_number <= 6 %}{% endif %}">
+            {{guess.attempt_number}}
+        </span>
+        {% if guess.attempt_number == 1 %}guess{% else %}guesses{% endif %}!
+    </h3>
+    <h3>New score: {{user.score}}</h3>
+    <h3>Winstreak: {{user.winstreak}}</h3>
+    <h2>The word was {{answer.word}}</h2>
+
+    <a class="action__btn" href="{% url 'home' %}">Nice</a>
+</div>
+
+{% endblock content %}

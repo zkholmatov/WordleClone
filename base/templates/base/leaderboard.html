@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load index_filters %}
+
+<div class="leaderboard">
+    <h1>Leaderboard</h1>
+    <ul>
+        <li>
+            <div><p>#</p>Name</div>
+            <span>Streak</span>
+            <span>Score</span>
+        </li>
+        {% for user in users %}
+            <li class="{% if user.id == request.user.id %}current__user{% endif %}">
+                <div><p>{{forloop.counter0|zerotoone}}.</p>{{user.username}}</div>
+                <span>{{user.winstreak}}</span>
+                <span>{{user.score}}</span>
+            </li>
+        {% endfor %}
+    </ul>
+    <a class="action__btn" href="{% url 'home' %}">Back</a>
+</div>
+
+
+{% endblock content %}
