@@ -11,11 +11,11 @@ A demo website is deploed on Render which can be viewed [here](https://wordleclo
 ## FEATURES
 - User authorization, registration, and login/logout
 - Leaderboard with winstreak and score
-- Save data in a database
+- User data stored in a database
 - All other basic mechanics from Wordle:
     - Guess a randomly selected 5 letter word in up to 6 attemps
     - Visual feedback indicating if letter is: present=🟨, in exact spot=🟩, or absent=⬜ in the answer
-    - On-screen keyboard with indicating of a letter has been used and if it is present in the answer
+    - On-screen keyboard indicating if a letter has been used and if it is present in the answer
  
 
 
